@@ -1,28 +1,47 @@
-from cv2 import imshow, imread, waitKey, destroyAllWindows
-from numpy import array, arange
+from cv2 import imshow, imread, waitKey
+from numpy import array, arange, random
+from time import sleep, time, strptime, mktime, perf_counter_ns
 
 
-old_image = array(imread("old.jpg"))
+old_image = imread("old.jpg")
 new_image = imread("new.jpg")
 
 
-def show_image_transition(old_image, new_image, n_step):
+def show_image_transition(old_image, new_image, end_time):
+
+    #Initialisation
     height, width = old_image.shape[:2]
+    total_size = height * width
 
-    for i in range(n_step):
-        imshow("Image", old_image)
-        waitKey(100)
-        old_image[0:720, width // n_step * i : width // n_step * (i + 1)] = new_image[0:720, width // n_step * i : width // n_step * (i + 1)]
-    old_image[:, :] = new_image[:, :]
-    imshow("Image", old_image)
-    waitKey(1)
+    random_array = array([arange(height) for _ in range(width)])
+    for arr in random_array:
+        random.shuffle(arr)
 
-
-show_image_transition(old_image, new_image, 100)
+    start_time = time()
+    end_time = mktime(strptime(end_time, "%d-%m-%y %H:%M:%S"))
+    total_duration = end_time - start_time
 
 
-old_image[0:240, 0:720] = new_image[0:240, 0:720]
-imshow("Image", old_image)
+
+    
+
+    #Main loop
+    y = 0
+    while y < height:
+
+        random_x = arange(width)
+        random.shuffle(random_x)
+        i = 0
+        while i < width:
+            if ((time() - start_time)/total_duration)*total_size > y*width + i:
+                old_image[random_array[random_x[i],y], random_x[i]] = new_image[random_array[random_x[i],y], random_x[i]]
+                i += 1
+                imshow("Transition", old_image)
+                waitKey(1)
+            else:
+                print("Waiting")
+                sleep(1)
+        y += 1
 
 
-destroyAllWindows()
+show_image_transition(old_image, new_image, "21-02-24 12:50:00")
