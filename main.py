@@ -32,8 +32,9 @@ def show_image_transition(old_image, new_image, end_time):
         random_x = arange(width)
         random.shuffle(random_x)
         i = 0
+        already_done = y*width
         while i < width:
-            if ((time() - start_time)/total_duration)*total_size > y*width + i:
+            if ((time() - start_time)/total_duration)*total_size > already_done + i:
                 old_image[random_array[random_x[i],y], random_x[i]] = new_image[random_array[random_x[i],y], random_x[i]]
                 i += 1
                 imshow("Transition", old_image)
