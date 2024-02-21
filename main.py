@@ -1,6 +1,6 @@
 from cv2 import imshow, imread, waitKey
 from numpy import array, arange, random
-from time import sleep, time, strptime, mktime, perf_counter_ns
+from time import sleep, time, strptime, mktime
 
 
 old_image = imread("old.jpg")
@@ -45,4 +45,4 @@ def show_image_transition(old_image, new_image, end_time):
         y += 1
 
 
-show_image_transition(old_image, new_image, "21-02-24 12:50:00")
+show_image_transition(old_image, new_image, "21-02-24 17:25:00")
