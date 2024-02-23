@@ -57,4 +57,4 @@ def show_image_transition(old_image, new_image, end_time):
         print(nd1 - strt1)
 
 
-show_image_transition(old_image, new_image, "22-02-24 21:58:00")
+show_image_transition(old_image, new_image, "23-02-24 10:58:00")
