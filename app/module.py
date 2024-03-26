@@ -1,11 +1,12 @@
-from numpy import arange, array, copy
-from random import shuffle
+from numpy import array, random
 from config import Config
 from json import dump
 def random_path():
-    x_path = arange(Config.SCREEN_WIDTH//4)
-    path = array([copy(shuffle(x_path)) for _ in range(Config.SCREEN_HEIGHT//4)])
-    dump(path, Config.coords_file)
-    return path
-
-random_path()
+    path = [None] * (Config.SCREEN_HEIGHT * Config.SCREEN_WIDTH)
+    for x in range(Config.SCREEN_WIDTH):
+        for y in range(Config.SCREEN_HEIGHT):
+            path[x * Config.SCREEN_HEIGHT + y] = (x, y)
+    random.shuffle(path)
+    with open(Config.coords_file, 'w') as f:
+        dump(path, f)
+    return array(path)
