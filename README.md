@@ -1,10 +1,7 @@
 Project ImageSubstitution
-Overview
 
-This project was a collaborative effort made hand in hand by all contributors involved. We believe in the power of teamwork and equality in contributions, where every member's effort is valued equally.
-Contributors
+Nous étions ensemble à chaque fois que nous avons travaillé sur le projet, donc aucune contribution ne dépend uniquement d'une personne.
 
-    Thomas
-    Alizée
+Thomas & Alizée
 
 
